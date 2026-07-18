@@ -20,6 +20,11 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            if [ ! -d "/home/ubuntu/Home-Prices-API" ]; then
+              cd /home/ubuntu
+              git clone https://github.com/Shashank17singh/Home-Prices-API.git
+            fi
+            
             cd /home/ubuntu/Home-Prices-API
             git pull origin main
             
