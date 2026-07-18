@@ -57,10 +57,21 @@ Home-Prices-API/
 
 ### Prerequisites
 
-- Python 3.x
-- Nginx installed locally or on your host server
+- Docker and Docker Compose (Recommended) OR Python 3.x and Nginx
 
-### 1. Start the Flask Backend
+### 1. Run with Docker (Recommended)
+
+The easiest way to run the application is using Docker. It automatically builds the Python environment, runs the Gunicorn server, and exposes port `5000`.
+
+```bash
+git clone https://github.com/Shashank17singh/Home-Prices-API.git
+cd Home-Prices-API
+
+docker-compose up -d --build
+```
+The API will now be listening on `http://localhost:5000`.
+
+### 2. Manual Setup (Without Docker)
 
 Clone the repository and move into the `server` folder:
 
@@ -72,7 +83,7 @@ cd Home-Prices-API/server
 Install the required libraries:
 
 ```bash
-pip install flask numpy scikit-learn
+pip install -r requirements.txt
 ```
 
 Run the server:
@@ -83,7 +94,7 @@ python server.py
 
 The server loads the ML artifacts and listens on port `5000`.
 
-### 2. Configure Nginx
+### Configure Nginx
 
 To serve the frontend and proxy API requests, update your local `nginx.conf` server block (a reference config is also in `nginx_files/`):
 
@@ -94,19 +105,28 @@ server {
 
     # Serve Frontend UI
     location / {
-        root   "C:/Path/To/Your/Project/Bangalore-Home-Prices-API/client"; # Update this path!
+        root   "/path/to/Home-Prices-API/client"; # Update this path!
         index  app.html index.html index.htm;
     }
 
     # Proxy API requests to Flask
     location /api/ {
-        rewrite ^/api/(.*) /$1 break;
         proxy_pass http://127.0.0.1:5000;
     }
 }
 ```
 
 Reload Nginx (`nginx -s reload`) and open `http://localhost` in your browser.
+
+---
+
+## 🚀 CI/CD Pipeline
+
+This project includes a fully automated deployment pipeline using **GitHub Actions**.
+Whenever changes are pushed to the `main` branch, the `.github/workflows/deploy.yml` workflow automatically:
+1. Connects to the AWS EC2 instance via SSH.
+2. Pulls the latest code.
+3. Builds and restarts the Docker containers for zero-downtime deployment.
 
 ---
 
