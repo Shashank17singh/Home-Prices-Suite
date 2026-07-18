@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: home-prices-api
+    restart: always
+    ports:
+      - "5000:5000"
