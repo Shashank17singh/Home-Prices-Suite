@@ -19,6 +19,38 @@ This repository contains the core intelligence of the Home Price prediction plat
 
 ---
 
+
+
+### 🏗️ Architecture
+
+`mermaid
+graph TD
+    subgraph "Frontend"
+    A[Browser / Client]
+    end
+    
+    subgraph "AWS EC2 Deployment"
+    B(Nginx Reverse Proxy)
+    C[Docker Container: Flask API]
+    D(Scikit-Learn Model)
+    end
+    
+    A -->|HTTP Requests| B
+    B -->|Proxy Pass| C
+    C -->|Feature Engineering| D
+    D -->|Price Prediction| C
+    C -->|JSON Response| B
+    B -->|Serve Results| A
+    
+    classDef io fill:#f9f0ff,stroke:#8a2be2,stroke-width:2px,color:#000;
+    classDef core fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#000;
+    classDef logic fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#000;
+    
+    class A io;
+    class B,C core;
+    class D logic;
+`
+
 ## ✨ Features
 
 | | |
