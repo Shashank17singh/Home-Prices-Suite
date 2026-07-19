@@ -1,3 +1,4 @@
+from typing import Tuple, Any
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import util
@@ -9,8 +10,13 @@ CORS(app)
 util.load_saved_artifacts()
 
 @app.route('/api/get_location_names', methods=['GET'])
-def get_location_names():
-    """Returns the list of available locations."""
+def get_location_names() -> Any:
+    """
+    API Endpoint: Returns the list of available locations.
+    
+    Returns:
+        Flask Response: A JSON object containing the list of locations and CORS headers.
+    """
     response = jsonify({
         'locations': util.get_locations_names()
     })
@@ -18,8 +24,13 @@ def get_location_names():
     return response
 
 @app.route('/api/predict_home_price', methods=['POST'])
-def predict_home_price():
-    """Predicts the price based on input form data."""
+def predict_home_price() -> Any:
+    """
+    API Endpoint: Predicts the home price based on input form data (location, sqft, bhk, bath).
+    
+    Returns:
+        Flask Response: A JSON object containing the estimated_price or an error message.
+    """
     try:
         total_sqft = float(request.form['total_sqft'])
         location = request.form['location']
