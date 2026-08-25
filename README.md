@@ -23,7 +23,7 @@ This repository contains the core intelligence of the Home Price prediction plat
 
 ### 🏗️ Architecture
 
-`mermaid
+```mermaid
 graph TD
     subgraph "Frontend"
     A[Browser / Client]
@@ -49,7 +49,7 @@ graph TD
     class A io;
     class B,C core;
     class D logic;
-`
+```
 
 ## ✨ Features
 
