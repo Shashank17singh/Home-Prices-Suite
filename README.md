@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏡 Home Price Predictor — Web & API
+#  Home Price Predictor — Web & API
 
 **A full-stack machine learning application that predicts real estate prices across Bangalore, India**
 
@@ -13,7 +13,7 @@
 
 ---
 
-## 📖 Overview
+##  Overview
 
 This repository contains the core intelligence of the Home Price prediction platform — a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
 
@@ -21,7 +21,7 @@ This repository contains the core intelligence of the Home Price prediction plat
 
 
 
-### 🏗️ Architecture
+###  Architecture
 
 ```mermaid
 graph TD
@@ -51,18 +51,18 @@ graph TD
     class D logic;
 ```
 
-## ✨ Features
+##  Features
 
 | | |
 |---|---|
-| 🧠 **Machine Learning Engine** | Custom-trained Scikit-Learn Linear Regression model for price estimation |
-| 🔌 **RESTful API** | Structured JSON endpoints consumable by web, mobile, or desktop clients |
-| 🖥️ **Web Interface** | Fully responsive browser UI built with HTML, CSS, and jQuery |
-| 🚀 **Production Ready** | Nginx-backed routing and static file delivery |
+|  **Machine Learning Engine** | Custom-trained Scikit-Learn Linear Regression model for price estimation |
+|  **RESTful API** | Structured JSON endpoints consumable by web, mobile, or desktop clients |
+|  **Web Interface** | Fully responsive browser UI built with HTML, CSS, and jQuery |
+|  **Production Ready** | Nginx-backed routing and static file delivery |
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 **Machine Learning** — Scikit-Learn · NumPy · Pandas
 **Backend** — Python · Flask
@@ -71,7 +71,7 @@ graph TD
 
 ---
 
-## 📂 Directory Structure
+##  Directory Structure
 
 ```
 Home-Prices-API/
@@ -85,7 +85,7 @@ Home-Prices-API/
 
 ---
 
-## ⚙️ Setup and Installation
+##  Setup and Installation
 
 ### Prerequisites
 
@@ -152,7 +152,7 @@ Reload Nginx (`nginx -s reload`) and open `http://localhost` in your browser.
 
 ---
 
-## 🚀 CI/CD Pipeline
+##  CI/CD Pipeline
 
 This project includes a fully automated deployment pipeline using **GitHub Actions**.
 Whenever changes are pushed to the `main` branch, the `.github/workflows/deploy.yml` workflow automatically:
@@ -162,7 +162,7 @@ Whenever changes are pushed to the `main` branch, the `.github/workflows/deploy.
 
 ---
 
-## 📡 API Documentation
+##  API Documentation
 
 ### `GET /get_location_names`
 
