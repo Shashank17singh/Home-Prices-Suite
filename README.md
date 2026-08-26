@@ -1,6 +1,6 @@
 <div align="center">
 
-#  Home Price Predictor — Web & API
+#  Home Price Predictor - Web & API
 
 **A full-stack machine learning application that predicts real estate prices across Bangalore, India**
 
@@ -15,7 +15,7 @@
 
 ##  Overview
 
-This repository contains the core intelligence of the Home Price prediction platform — a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
+This repository contains the core intelligence of the Home Price prediction platform - a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
 
 ---
 
@@ -64,10 +64,10 @@ graph TD
 
 ##  Tech Stack
 
-**Machine Learning** — Scikit-Learn · NumPy · Pandas
-**Backend** — Python · Flask
-**Frontend** — HTML5 · CSS3 · Vanilla JavaScript (jQuery)
-**Web Server** — Nginx
+**Machine Learning** - Scikit-Learn · NumPy · Pandas
+**Backend** - Python · Flask
+**Frontend** - HTML5 · CSS3 · Vanilla JavaScript (jQuery)
+**Web Server** - Nginx
 
 ---
 
