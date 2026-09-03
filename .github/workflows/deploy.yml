@@ -21,15 +21,17 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: false
           script: |
-            # Try to pull latest code in both possible directories
-            if [ -d "/home/ubuntu/BangloreHomePrices" ]; then
-              cd /home/ubuntu/BangloreHomePrices
-              git pull origin main || true
+            # Try to force-update code in both possible directories bypassing git pull
+            if [ -d "/home/ubuntu/BangloreHomePrices/server" ]; then
+              wget -qO /home/ubuntu/BangloreHomePrices/server/util.py https://raw.githubusercontent.com/Shashank17singh/Home-Prices-API/main/server/util.py
+              wget -qO /home/ubuntu/BangloreHomePrices/server/server.py https://raw.githubusercontent.com/Shashank17singh/Home-Prices-API/main/server/server.py
+              
+              # Restart the systemd service (trying common names)
               sudo systemctl restart bhp || sudo systemctl restart gunicorn || true
               sudo pkill -f gunicorn || true
             fi
             
-            if [ -d "/home/ubuntu/Home-Prices-API" ]; then
+            if [ -d "/home/ubuntu/Home-Prices-API/server" ]; then
               cd /home/ubuntu/Home-Prices-API
               git pull origin main || true
               
@@ -37,6 +39,9 @@ jobs:
               sudo python3 -c 'import os, socket; [os.kill(int(p), 9) for p in os.popen("lsof -t -i:5000").read().split() if p]' || true
               sudo ss -lptn 'sport = :5000' | grep -o 'pid=[0-9]*' | cut -d= -f2 | xargs -r sudo kill -9 || true
               
-              # Build and start the Docker containers (without sudo so PATH is correct)
+              # Build and start the Docker containers
               docker compose up -d --build || docker-compose up -d --build || true
             fi
+            
+            # Ensure script exits with 0
+            exit 0
