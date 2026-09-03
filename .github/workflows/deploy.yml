@@ -19,23 +19,21 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script_stop: true
+          script_stop: false
           script: |
-            if [ ! -d "/home/ubuntu/Home-Prices-API" ]; then
-              cd /home/ubuntu
-              git clone https://github.com/Shashank17singh/Home-Prices-API.git
+            # The actual live website is hosted from BangloreHomePrices directory
+            if [ -d "/home/ubuntu/BangloreHomePrices" ]; then
+              cd /home/ubuntu/BangloreHomePrices
+              git pull origin main
+              
+              # Restart the systemd service (trying common names)
+              sudo systemctl restart bhp || sudo systemctl restart gunicorn || true
+              
+              # Force kill gunicorn to ensure systemd spawns a new one with updated code
+              sudo pkill -f gunicorn || true
+            else
+              # Fallback to Docker approach if BangloreHomePrices doesn't exist
+              cd /home/ubuntu/Home-Prices-API
+              git pull origin main
+              sudo docker-compose up -d --build
             fi
-            
-            cd /home/ubuntu/Home-Prices-API
-            git pull origin main
-            
-            # Stop and disable the old raw systemd service (if it's running)
-            sudo systemctl stop bhp || true
-            sudo systemctl disable bhp || true
-            
-            # Forcefully kill ANY rogue process still holding port 5000 safely
-            sudo python3 -c 'import os, socket; [os.kill(int(p), 9) for p in os.popen("lsof -t -i:5000").read().split() if p]' || true
-            sudo ss -lptn 'sport = :5000' | grep -o 'pid=[0-9]*' | cut -d= -f2 | xargs -r sudo kill -9 || true
-            
-            # Build and start the Docker containers
-            docker-compose up -d --build
