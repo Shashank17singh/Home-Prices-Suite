@@ -21,19 +21,22 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: false
           script: |
-            # The actual live website is hosted from BangloreHomePrices directory
+            # Try to pull latest code in both possible directories
             if [ -d "/home/ubuntu/BangloreHomePrices" ]; then
               cd /home/ubuntu/BangloreHomePrices
-              git pull origin main
-              
-              # Restart the systemd service (trying common names)
+              git pull origin main || true
               sudo systemctl restart bhp || sudo systemctl restart gunicorn || true
-              
-              # Force kill gunicorn to ensure systemd spawns a new one with updated code
               sudo pkill -f gunicorn || true
-            else
-              # Fallback to Docker approach if BangloreHomePrices doesn't exist
+            fi
+            
+            if [ -d "/home/ubuntu/Home-Prices-API" ]; then
               cd /home/ubuntu/Home-Prices-API
-              git pull origin main
-              sudo docker-compose up -d --build
+              git pull origin main || true
+              
+              # Forcefully kill ANY rogue process still holding port 5000 safely
+              sudo python3 -c 'import os, socket; [os.kill(int(p), 9) for p in os.popen("lsof -t -i:5000").read().split() if p]' || true
+              sudo ss -lptn 'sport = :5000' | grep -o 'pid=[0-9]*' | cut -d= -f2 | xargs -r sudo kill -9 || true
+              
+              # Build and start the Docker containers (without sudo so PATH is correct)
+              docker compose up -d --build || docker-compose up -d --build || true
             fi
