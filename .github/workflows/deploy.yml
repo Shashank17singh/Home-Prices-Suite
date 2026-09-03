@@ -34,7 +34,8 @@ jobs:
             sudo systemctl disable bhp || true
             
             # Forcefully kill ANY rogue process still holding port 5000 safely
-            sudo fuser -k 5000/tcp || echo "Port 5000 is free"
+            sudo python3 -c 'import os, socket; [os.kill(int(p), 9) for p in os.popen("lsof -t -i:5000").read().split() if p]' || true
+            sudo ss -lptn 'sport = :5000' | grep -o 'pid=[0-9]*' | cut -d= -f2 | xargs -r sudo kill -9 || true
             
             # Build and start the Docker containers
             docker-compose up -d --build
