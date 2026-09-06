@@ -191,7 +191,7 @@ Calculates the estimated price in Lakh Rupees.
 **Response**
 ```json
 {
-  "estimated_price": 86.81
+  "estimated_price": 207.99
 }
 ```
 
