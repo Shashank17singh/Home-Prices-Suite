@@ -1,6 +1,6 @@
 <div align="center">
 
-#  Home Price Predictor - Web & API
+#  Home Price Suite - Web & API
 
 **A full-stack machine learning application that predicts real estate prices across Bangalore, India**
 
