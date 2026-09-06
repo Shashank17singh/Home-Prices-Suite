@@ -74,7 +74,7 @@ graph TD
 ##  Directory Structure
 
 ```
-Home-Prices-API/
+Home-Prices-Suite/
 │
 ├── client/               # HTML/CSS/JS frontend UI
 ├── model/                # Jupyter notebooks & ML artifacts (.pickle, columns.json)
@@ -96,8 +96,8 @@ Home-Prices-API/
 The easiest way to run the application is using Docker. It automatically builds the Python environment, runs the Gunicorn server, and exposes port `5000`.
 
 ```bash
-git clone https://github.com/Shashank17singh/Home-Prices-API.git
-cd Home-Prices-API
+git clone https://github.com/Shashank17singh/Home-Prices-Suite.git
+cd Home-Prices-Suite
 
 docker-compose up -d --build
 ```
@@ -108,8 +108,8 @@ The API will now be listening on `http://localhost:5000`.
 Clone the repository and move into the `server` folder:
 
 ```bash
-git clone https://github.com/Shashank17singh/Home-Prices-API.git
-cd Home-Prices-API/server
+git clone https://github.com/Shashank17singh/Home-Prices-Suite.git
+cd Home-Prices-Suite/server
 ```
 
 Install the required libraries:
@@ -137,7 +137,7 @@ server {
 
     # Serve Frontend UI
     location / {
-        root   "/path/to/Home-Prices-API/client"; # Update this path!
+        root   "/path/to/Home-Prices-Suite/client"; # Update this path!
         index  app.html index.html index.htm;
     }
 
