@@ -15,7 +15,7 @@
 
 ##  Overview
 
-Architected as a standalone solution, this repository contains the core intelligence of the Home Price prediction platform - a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
+Architected the core intelligence of the Home Price prediction platform - a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
 
 ---
 
