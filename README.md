@@ -1,6 +1,6 @@
 <div align="center">
 
-#  Home Price Suite - Web & API
+# Home Price Suite - Web & API
 
 **A full-stack machine learning application that predicts real estate prices across Bangalore, India**
 
@@ -196,3 +196,9 @@ Calculates the estimated price in Lakh Rupees.
 ```
 
 ---
+
+
+---
+
+## Deployment
+- **API URL:** https://home-prices-api.duckdns.org/docs
