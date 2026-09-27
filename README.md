@@ -201,4 +201,4 @@ Calculates the estimated price in Lakh Rupees.
 ---
 
 ## Deployment
-- **API URL:** https://home-prices-api.duckdns.org/docs
+- **Dashboard URL:** https://home-prices-api.duckdns.org/
