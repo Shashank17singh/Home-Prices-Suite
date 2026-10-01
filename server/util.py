@@ -1,8 +1,9 @@
-from typing import List, Optional, Any
-import pickle
 import json
-import numpy as np
 import os
+import pickle
+
+import numpy as np
+
 __locations = None
 __data_columns = None
 __model = None
@@ -31,9 +32,9 @@ def get_estimated_price(location: str, sqft: float, bhk: int, bath: int) -> floa
         x[loc_index] = 1
 
     base_price = __model.predict([x])[0]
-    
+
     adjusted_price = base_price + (bhk * 3)
-    
+
     return round(adjusted_price, 2)
 
 
@@ -59,7 +60,7 @@ def load_saved_artifacts() -> None:
     print("loading saved artifacts...done")
 
 
-def get_locations_names() -> List[str]:
+def get_locations_names() -> list[str]:
     """
     Retrieves the list of valid location names that the model was trained on.
     Returns:
@@ -68,7 +69,7 @@ def get_locations_names() -> List[str]:
     return __locations
 
 
-def get_data_columns() -> List[str]:
+def get_data_columns() -> list[str]:
     """
     Retrieves all feature column names used by the model.
     Returns:
