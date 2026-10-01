@@ -6,6 +6,8 @@ import os
 __locations = None
 __data_columns = None
 __model = None
+
+
 def get_estimated_price(location: str, sqft: float, bhk: int, bath: int) -> float:
     """
     Predicts the estimated home price using the loaded linear regression model.
@@ -38,6 +40,8 @@ def get_estimated_price(location: str, sqft: float, bhk: int, bath: int) -> floa
     adjusted_price = base_price + (bhk * 3)
     
     return round(adjusted_price, 2)
+
+
 def load_saved_artifacts() -> None:
     """
     Loads the serialized machine learning artifacts (model and feature columns)
@@ -58,6 +62,8 @@ def load_saved_artifacts() -> None:
         ) as f:
             __model = pickle.load(f)
     print("loading saved artifacts...done")
+
+
 def get_locations_names() -> List[str]:
     """
     Retrieves the list of valid location names that the model was trained on.
@@ -65,6 +71,8 @@ def get_locations_names() -> List[str]:
         List[str]: A list of neighborhood strings.
     """
     return __locations
+
+
 def get_data_columns() -> List[str]:
     """
     Retrieves all feature column names used by the model.
@@ -72,6 +80,8 @@ def get_data_columns() -> List[str]:
         List[str]: A list of feature columns.
     """
     return __data_columns
+
+
 if __name__ == "__main__":
     load_saved_artifacts()
     print(get_locations_names())
