@@ -13,56 +13,54 @@
 
 ---
 
-##  Overview
+## Overview
 
 Architected the core intelligence of the Home Price prediction platform - a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
 
 ---
 
-
-
-###  Architecture
+### Architecture
 
 ```mermaid
 graph TD
     subgraph "Frontend"
     A[Browser / Client]
     end
-    
+
     subgraph "AWS EC2 Deployment"
     B(Nginx Reverse Proxy)
     C[Docker Container: Flask API]
     D(Scikit-Learn Model)
     end
-    
+
     A -->|HTTP Requests| B
     B -->|Proxy Pass| C
     C -->|Feature Engineering| D
     D -->|Price Prediction| C
     C -->|JSON Response| B
     B -->|Serve Results| A
-    
+
     classDef io fill:#f9f0ff,stroke:#8a2be2,stroke-width:2px,color:#000;
     classDef core fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#000;
     classDef logic fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#000;
-    
+
     class A io;
     class B,C core;
     class D logic;
 ```
 
-##  Features
+## Features
 
-| | |
-|---|---|
-|  **Machine Learning Engine** | Custom-trained Scikit-Learn Linear Regression model for price estimation |
-|  **RESTful API** | Structured JSON endpoints consumable by web, mobile, or desktop clients |
-|  **Web Interface** | Fully responsive browser UI built with HTML, CSS, and jQuery |
-|  **Production Ready** | Nginx-backed routing and static file delivery |
+|                             |                                                                          |
+| --------------------------- | ------------------------------------------------------------------------ |
+| **Machine Learning Engine** | Custom-trained Scikit-Learn Linear Regression model for price estimation |
+| **RESTful API**             | Structured JSON endpoints consumable by web, mobile, or desktop clients  |
+| **Web Interface**           | Fully responsive browser UI built with HTML, CSS, and jQuery             |
+| **Production Ready**        | Nginx-backed routing and static file delivery                            |
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 **Machine Learning** - Scikit-Learn · NumPy · Pandas
 **Backend** - Python · Flask
@@ -71,7 +69,7 @@ graph TD
 
 ---
 
-##  Directory Structure
+## Directory Structure
 
 ```
 Home-Prices-Suite/
@@ -85,7 +83,7 @@ Home-Prices-Suite/
 
 ---
 
-##  Setup and Installation
+## Setup and Installation
 
 ### Prerequisites
 
@@ -101,6 +99,7 @@ cd Home-Prices-Suite
 
 docker-compose up -d --build
 ```
+
 The API will now be listening on `http://localhost:5000`.
 
 ### 2. Manual Setup (Without Docker)
@@ -152,23 +151,25 @@ Reload Nginx (`nginx -s reload`) and open `http://localhost` in your browser.
 
 ---
 
-##  CI/CD Pipeline
+## CI/CD Pipeline
 
 This project includes a fully automated deployment pipeline using **GitHub Actions**.
 Whenever changes are pushed to the `main` branch, the `.github/workflows/deploy.yml` workflow automatically:
+
 1. Connects to the AWS EC2 instance via SSH.
 2. Pulls the latest code.
 3. Builds and restarts the Docker containers for zero-downtime deployment.
 
 ---
 
-##  API Documentation
+## API Documentation
 
 ### `GET /get_location_names`
 
 Returns all supported Bangalore neighborhoods.
 
 **Response**
+
 ```json
 {
   "locations": ["1st Phase JP Nagar", "Electronic City", "Whitefield", "..."]
@@ -181,14 +182,15 @@ Calculates the estimated price in Lakh Rupees.
 
 **Form Data Parameters**
 
-| Parameter | Type | Description |
-|---|---|---|
-| `total_sqft` | float | Total square footage |
-| `bhk` | int | Number of bedrooms |
-| `bath` | int | Number of bathrooms |
-| `location` | string | Neighborhood name |
+| Parameter    | Type   | Description          |
+| ------------ | ------ | -------------------- |
+| `total_sqft` | float  | Total square footage |
+| `bhk`        | int    | Number of bedrooms   |
+| `bath`       | int    | Number of bathrooms  |
+| `location`   | string | Neighborhood name    |
 
 **Response**
+
 ```json
 {
   "estimated_price": 207.99
@@ -197,26 +199,25 @@ Calculates the estimated price in Lakh Rupees.
 
 ---
 
-
 ---
 
 ## Deployment
+
 - **Dashboard URL:** https://home-prices-api.duckdns.org/
 
-
---- 
+---
 
 ## Deep Codebase Analysis
 
-| File | Purpose / Details |
-|---|---|
-| `client\app.js` | Core component logic and implementation details. |
-| `docker-compose.yml` | Core component logic and implementation details. |
-| `model\columns.json` | Core component logic and implementation details. |
+| File                            | Purpose / Details                                |
+| ------------------------------- | ------------------------------------------------ |
+| `client\app.js`                 | Core component logic and implementation details. |
+| `docker-compose.yml`            | Core component logic and implementation details. |
+| `model\columns.json`            | Core component logic and implementation details. |
 | `model\home_prices_final.ipynb` | Core component logic and implementation details. |
-| `model\home_prices_final.py` | Core component logic and implementation details. |
-| `requirements.txt` | Core component logic and implementation details. |
+| `model\home_prices_final.py`    | Core component logic and implementation details. |
+| `requirements.txt`              | Core component logic and implementation details. |
 | `server\artifacts\columns.json` | Core component logic and implementation details. |
-| `server\requirements.txt` | Core component logic and implementation details. |
-| `server\server.py` | Core component logic and implementation details. |
-| `server\util.py` | Core component logic and implementation details. |
+| `server\requirements.txt`       | Core component logic and implementation details. |
+| `server\server.py`              | Core component logic and implementation details. |
+| `server\util.py`                | Core component logic and implementation details. |

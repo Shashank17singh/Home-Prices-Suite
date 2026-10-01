@@ -1,29 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --color-primary: #1E293B;
-  --color-on-primary: #FFFFFF;
+  --color-primary: #1e293b;
+  --color-on-primary: #ffffff;
   --color-secondary: #334155;
-  --color-on-secondary: #FFFFFF;
-  --color-accent: #22C55E;
-  --color-on-accent: #0F172A;
-  --color-background: #0F172A;
-  --color-foreground: #F8FAFC;
+  --color-on-secondary: #ffffff;
+  --color-accent: #22c55e;
+  --color-on-accent: #0f172a;
+  --color-background: #0f172a;
+  --color-foreground: #f8fafc;
   --color-card: rgba(27, 35, 54, 0.7);
-  --color-card-foreground: #F8FAFC;
+  --color-card-foreground: #f8fafc;
   --color-border: rgba(255, 255, 255, 0.15);
 }
 
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   color: var(--color-foreground);
   background-color: var(--color-background);
 }
 
 .img {
-  background: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background: url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -52,7 +53,7 @@ body, html {
 }
 
 h2 {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 24px;
   margin-bottom: 16px;
   color: var(--color-foreground);
@@ -98,8 +99,9 @@ h2 {
   font-weight: 600;
 }
 
-.area, .location {
-  font-family: 'Josefin Sans', sans-serif;
+.area,
+.location {
+  font-family: "Josefin Sans", sans-serif;
   outline: 0;
   background: rgba(255, 255, 255, 0.1);
   color: var(--color-foreground);
@@ -111,7 +113,8 @@ h2 {
   font-size: 16px;
   border-radius: 8px;
 }
-.area:focus, .location:focus {
+.area:focus,
+.location:focus {
   border-color: var(--color-accent);
   background: rgba(255, 255, 255, 0.15);
 }
@@ -130,7 +133,7 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }
 .submit:hover {
   transform: translateY(-2px);
@@ -149,5 +152,5 @@ h2 {
   font-weight: 700;
   text-align: center;
   border-radius: 8px;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
 }

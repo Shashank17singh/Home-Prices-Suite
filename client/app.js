@@ -27,26 +27,31 @@ function onClickedEstimatePrice() {
     console.error("Required UI elements are missing.");
     return;
   }
-  var url = "/api/predict_home_price"; 
-  $.post(url, {
-    total_sqft: parseFloat(sqft.value),
-    bhk: bhk,
-    bath: bathrooms,
-    location: location.value
-  }, function(data, status) {
-    console.log(data.estimated_price);
-    var fullRupees = Math.round(data.estimated_price * 100000);
-    estPrice.innerHTML = "<h2>&#8377; " + fullRupees.toLocaleString('en-IN') + "</h2>";
-  });
+  var url = "/api/predict_home_price";
+  $.post(
+    url,
+    {
+      total_sqft: parseFloat(sqft.value),
+      bhk: bhk,
+      bath: bathrooms,
+      location: location.value,
+    },
+    function (data, status) {
+      console.log(data.estimated_price);
+      var fullRupees = Math.round(data.estimated_price * 100000);
+      estPrice.innerHTML =
+        "<h2>&#8377; " + fullRupees.toLocaleString("en-IN") + "</h2>";
+    },
+  );
 }
 function onPageLoad() {
   console.log("document loaded");
-  var url = "/api/get_location_names"; 
-  $.get(url, function(data, status) {
+  var url = "/api/get_location_names";
+  $.get(url, function (data, status) {
     console.log("got response for get_location_names");
     if (data && data.locations) {
       var locations = data.locations;
-      var uiLocations = $('#uiLocations');
+      var uiLocations = $("#uiLocations");
       uiLocations.empty();
       for (var i = 0; i < locations.length; i++) {
         var opt = new Option(locations[i], locations[i]);
