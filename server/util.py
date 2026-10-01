@@ -30,13 +30,8 @@ def get_estimated_price(location: str, sqft: float, bhk: int, bath: int) -> floa
     if loc_index >= 0:
         x[loc_index] = 1
 
-    # Get the raw model prediction
     base_price = __model.predict([x])[0]
     
-    # Heuristic: The Linear Regression model learned a negative coefficient for BHK 
-    # (because more rooms in the exact same square footage = smaller cramped rooms).
-    # To ensure the price always goes UP in the UI when users increase BHK, 
-    # we artificially add 3 Lakhs per bedroom.
     adjusted_price = base_price + (bhk * 3)
     
     return round(adjusted_price, 2)

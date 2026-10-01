@@ -140,7 +140,6 @@ def remove_bhk_outliers(df):
                 exclude_indices = np.append(exclude_indices, bhk_df[bhk_df.price_per_sqft<(stats['mean'])].index.values)
     return df.drop(exclude_indices,axis='index')
 df8 = remove_bhk_outliers(df7)
-# df8 = df7.copy()
 df8.shape
 
 plot_scatter_chart(df8,"Rajaji Nagar")
