@@ -15,7 +15,7 @@
 
 ## Overview
 
-Architected the core intelligence of the Home Price prediction platform - a trained ML model, a Flask REST API that serves live predictions, and a responsive web frontend, all designed to run behind an Nginx reverse proxy for production-grade performance.
+A production-grade web application that predicts home prices using a Scikit-learn Linear Regression model. It features a Flask REST API, an Nginx reverse proxy, and a responsive frontend for users to query property values.
 
 ---
 
