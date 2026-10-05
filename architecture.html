@@ -1,217 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Architecture - Home Prices Suite</title>
-              <meta name="color-scheme" content="dark">
-  <meta name="darkreader-lock">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Geist+Mono&family=Geist:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap');
-    
-    :root {
-      color-scheme: dark;
-      --bg-body: #050505;
-      --bg-container: #0a0a0a;
-      --node-fill: #171717;
-      --node-stroke: #404040;
-      --node-text: #f5f5f5;
-      --node-sub: #a3a3a3;
-      --edge-stroke: #525252;
-      --edge-text: #a3a3a3;
-      --hover-node-stroke: #a3a3a3;
-      --hover-node-fill: #262626;
-      --hover-edge: #d4d4d4;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture - Home Prices Suite</title>
+    <meta name="color-scheme" content="dark" />
+    <meta name="darkreader-lock" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Geist+Mono&family=Geist:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap");
 
-    body { 
-      margin: 0; 
-      padding: 2rem; 
-      font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-      background-color: var(--bg-body); 
-      color: var(--node-text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .diagram-container { 
-      width: 100%; 
-      max-width: 1200px;
-      overflow-x: auto; 
-      background-color: var(--bg-container); 
-      border: 1px solid #262626; 
-      border-radius: 12px; 
-      padding: 3rem; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-    }
-    
-    svg { 
-      width: 100%; 
-      min-width: 960px; 
-      display: block; 
-    }
+      :root {
+        color-scheme: dark;
+        --bg-body: #050505;
+        --bg-container: #0a0a0a;
+        --node-fill: #171717;
+        --node-stroke: #404040;
+        --node-text: #f5f5f5;
+        --node-sub: #a3a3a3;
+        --edge-stroke: #525252;
+        --edge-text: #a3a3a3;
+        --hover-node-stroke: #a3a3a3;
+        --hover-node-fill: #262626;
+        --hover-edge: #d4d4d4;
+      }
 
-    .node rect { 
-      fill: var(--node-fill); 
-      stroke: var(--node-stroke); 
-      stroke-width: 1.5; 
-      rx: 6; 
-      transition: all 0.2s ease;
-    }
-    .node:hover rect {
-      stroke: var(--hover-node-stroke);
-      fill: var(--hover-node-fill);
-    }
-    
-    .node text { 
-      fill: var(--node-text); 
-      font-size: 10px; 
-      font-weight: 600; 
-      transition: all 0.2s ease;
-      letter-spacing: 0.02em;
-    }
-    .node .sub { 
-      font-family: 'Geist Mono', 'Consolas', 'Courier New', monospace; 
-      font-size: 7.5px; 
-      font-weight: normal; 
-      fill: var(--node-sub); 
-    }
-    .node:hover text {
-      fill: #ffffff;
-    }
-    .node:hover .sub {
-      fill: #d4d4d4;
-    }
-    
-    .edge path { 
-      fill: none; 
-      stroke: var(--edge-stroke); 
-      stroke-width: 1.5; 
-      transition: all 0.2s ease;
-    }
-    .edge:hover path {
-      stroke: var(--hover-edge);
-      stroke-width: 2;
-    }
-    
-    .edge text { 
-      font-family: 'Geist Mono', 'Consolas', 'Courier New', monospace; 
-      font-size: 8px; 
-      fill: var(--edge-text); 
-      paint-order: stroke fill;
-      stroke: var(--bg-container);
-      stroke-width: 8px;
-      stroke-linejoin: round;
-      stroke-linecap: round;
-    }
-    
-    .title { 
-      font-family: 'Instrument Serif', Georgia, serif; 
-      font-size: 26px; 
-      fill: var(--node-text); 
-    }
-    .subtitle { 
-      font-family: 'Geist Mono', 'Consolas', 'Courier New', monospace; 
-      font-size: 9px; 
-      fill: #737373; 
-    }
-    
-    .zone { 
-      fill: rgba(255,255,255,0.02); 
-      stroke: rgba(255,255,255,0.1); 
-      stroke-width: 1; 
-      rx: 8; 
-    }
-    .zone-label { 
-      font-family: 'Geist Mono', 'Consolas', 'Courier New', monospace; 
-      font-size: 7px; 
-      fill: rgba(255,255,255,0.4); 
-      letter-spacing: 0.14em; 
-    }
+      body {
+        margin: 0;
+        padding: 2rem;
+        font-family:
+          "Geist",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Arial,
+          sans-serif;
+        background-color: var(--bg-body);
+        color: var(--node-text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    @keyframes flow {
-      to { stroke-dashoffset: -20; }
-    }
-    .edge path[stroke-dasharray] {
-      animation: flow 1.5s linear infinite;
-      stroke: var(--node-sub);
-    }
-  </style>
-</head>
-<body>
-  <div class="diagram-container">
-    <svg viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
-      <title id="title">Home Prices Suite Architecture</title>
-      <desc id="desc">Frontend and AWS EC2 Deployment workflow</desc>
-      
-                                    <defs>
-        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#525252" style="fill: context-stroke;" />
-        </marker>
-      </defs>
+      .diagram-container {
+        width: 100%;
+        max-width: 1200px;
+        overflow-x: auto;
+        background-color: var(--bg-container);
+        border: 1px solid #262626;
+        border-radius: 12px;
+        padding: 3rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      }
 
-      <text x="40" y="60" class="title">Home Prices Suite</text>
-      <text x="40" y="80" class="subtitle">Web & API (Flask + Scikit-Learn)</text>
+      svg {
+        width: 100%;
+        min-width: 960px;
+        display: block;
+      }
 
-      <!-- Zones -->
-      <rect x="40" y="120" width="240" height="400" class="zone" />
-      <text x="50" y="135" class="zone-label">FRONTEND</text>
+      .node rect {
+        fill: var(--node-fill);
+        stroke: var(--node-stroke);
+        stroke-width: 1.5;
+        rx: 6;
+        transition: all 0.2s ease;
+      }
+      .node:hover rect {
+        stroke: var(--hover-node-stroke);
+        fill: var(--hover-node-fill);
+      }
 
-      <rect x="320" y="120" width="600" height="400" class="zone" />
-      <text x="330" y="135" class="zone-label">AWS EC2 DEPLOYMENT</text>
+      .node text {
+        fill: var(--node-text);
+        font-size: 10px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        letter-spacing: 0.02em;
+      }
+      .node .sub {
+        font-family: "Geist Mono", "Consolas", "Courier New", monospace;
+        font-size: 7.5px;
+        font-weight: normal;
+        fill: var(--node-sub);
+      }
+      .node:hover text {
+        fill: #ffffff;
+      }
+      .node:hover .sub {
+        fill: #d4d4d4;
+      }
 
-      <!-- Nodes -->
-      <g class="node" transform="translate(80, 270)">
-        <rect x="0" y="0" width="160" height="60" />
-        <text x="80" y="25" text-anchor="middle" >Browser / Client</text>
-        <text x="80" y="40" class="sub" text-anchor="middle" >HTML / CSS / JS</text>
-      </g>
+      .edge path {
+        fill: none;
+        stroke: var(--edge-stroke);
+        stroke-width: 1.5;
+        transition: all 0.2s ease;
+      }
+      .edge:hover path {
+        stroke: var(--hover-edge);
+        stroke-width: 2;
+      }
 
-      <g class="node" transform="translate(380, 270)">
-        <rect x="0" y="0" width="160" height="60" />
-        <text x="80" y="25" text-anchor="middle" >Nginx Proxy</text>
-        <text x="80" y="40" class="sub" text-anchor="middle" >Reverse Proxy</text>
-      </g>
-      
-      <g class="node" transform="translate(600, 270)">
-        <rect x="0" y="0" width="140" height="60" />
-        <text x="70" y="25" text-anchor="middle" >Flask API</text>
-        <text x="70" y="40" class="sub" text-anchor="middle" >Docker Container</text>
-      </g>
-      
-      <g class="node" transform="translate(780, 270)">
-        <rect x="0" y="0" width="120" height="60" />
-        <text x="60" y="25" text-anchor="middle" >Model</text>
-        <text x="60" y="40" class="sub" text-anchor="middle" >Scikit-Learn</text>
-      </g>
+      .edge text {
+        font-family: "Geist Mono", "Consolas", "Courier New", monospace;
+        font-size: 8px;
+        fill: var(--edge-text);
+        paint-order: stroke fill;
+        stroke: var(--bg-container);
+        stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
 
-      <!-- Edges -->
-      <g class="edge">
-        <!-- Client to Nginx -->
-        <path d="M 240 290 L 380 290" marker-end="url(#arrow)" />
-        <text x="310" y="293" text-anchor="middle" >Request</text>
-        
-        <!-- Nginx to Client -->
-        <path d="M 380 310 L 240 310" marker-end="url(#arrow)" />
-        <text x="310" y="313" text-anchor="middle" >Response</text>
+      .title {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 26px;
+        fill: var(--node-text);
+      }
+      .subtitle {
+        font-family: "Geist Mono", "Consolas", "Courier New", monospace;
+        font-size: 9px;
+        fill: #737373;
+      }
 
-        <!-- Nginx to Flask -->
-        <path d="M 540 290 L 600 290" marker-end="url(#arrow)" />
-        <text x="570" y="293" text-anchor="middle" >Proxy</text>
+      .zone {
+        fill: rgba(255, 255, 255, 0.02);
+        stroke: rgba(255, 255, 255, 0.1);
+        stroke-width: 1;
+        rx: 8;
+      }
+      .zone-label {
+        font-family: "Geist Mono", "Consolas", "Courier New", monospace;
+        font-size: 7px;
+        fill: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.14em;
+      }
 
-        <!-- Flask to Nginx -->
-        <path d="M 600 310 L 540 310" marker-end="url(#arrow)" />
-        <text x="570" y="313" text-anchor="middle" >JSON</text>
-        
-        <!-- Flask to Model -->
-        <path d="M 740 290 L 780 290" marker-end="url(#arrow)" />
+      @keyframes flow {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+      .edge path[stroke-dasharray] {
+        animation: flow 1.5s linear infinite;
+        stroke: var(--node-sub);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-container">
+      <svg viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+        <title id="title">Home Prices Suite Architecture</title>
+        <desc id="desc">Frontend and AWS EC2 Deployment workflow</desc>
 
-        <!-- Model to Flask -->
-        <path d="M 780 310 L 740 310" marker-end="url(#arrow)" />
-      </g>
-    </svg>
-  </div>
-</body>
+        <defs>
+          <marker
+            id="arrow"
+            viewBox="0 0 10 10"
+            refX="8"
+            refY="5"
+            markerWidth="6"
+            markerHeight="6"
+            orient="auto-start-reverse"
+          >
+            <path
+              d="M 0 0 L 10 5 L 0 10 z"
+              fill="#525252"
+              style="fill: context-stroke"
+            />
+          </marker>
+        </defs>
+
+        <text x="40" y="60" class="title">Home Prices Suite</text>
+        <text x="40" y="80" class="subtitle">
+          Web & API (Flask + Scikit-Learn)
+        </text>
+
+        <!-- Zones -->
+        <rect x="40" y="120" width="240" height="400" class="zone" />
+        <text x="50" y="135" class="zone-label">FRONTEND</text>
+
+        <rect x="320" y="120" width="600" height="400" class="zone" />
+        <text x="330" y="135" class="zone-label">AWS EC2 DEPLOYMENT</text>
+
+        <!-- Nodes -->
+        <g class="node" transform="translate(80, 270)">
+          <rect x="0" y="0" width="160" height="60" />
+          <text x="80" y="25" text-anchor="middle">Browser / Client</text>
+          <text x="80" y="40" class="sub" text-anchor="middle">
+            HTML / CSS / JS
+          </text>
+        </g>
+
+        <g class="node" transform="translate(380, 270)">
+          <rect x="0" y="0" width="160" height="60" />
+          <text x="80" y="25" text-anchor="middle">Nginx Proxy</text>
+          <text x="80" y="40" class="sub" text-anchor="middle">
+            Reverse Proxy
+          </text>
+        </g>
+
+        <g class="node" transform="translate(600, 270)">
+          <rect x="0" y="0" width="140" height="60" />
+          <text x="70" y="25" text-anchor="middle">Flask API</text>
+          <text x="70" y="40" class="sub" text-anchor="middle">
+            Docker Container
+          </text>
+        </g>
+
+        <g class="node" transform="translate(780, 270)">
+          <rect x="0" y="0" width="120" height="60" />
+          <text x="60" y="25" text-anchor="middle">Model</text>
+          <text x="60" y="40" class="sub" text-anchor="middle">
+            Scikit-Learn
+          </text>
+        </g>
+
+        <!-- Edges -->
+        <g class="edge">
+          <!-- Client to Nginx -->
+          <path d="M 240 290 L 380 290" marker-end="url(#arrow)" />
+          <text x="310" y="293" text-anchor="middle">Request</text>
+
+          <!-- Nginx to Client -->
+          <path d="M 380 310 L 240 310" marker-end="url(#arrow)" />
+          <text x="310" y="313" text-anchor="middle">Response</text>
+
+          <!-- Nginx to Flask -->
+          <path d="M 540 290 L 600 290" marker-end="url(#arrow)" />
+          <text x="570" y="293" text-anchor="middle">Proxy</text>
+
+          <!-- Flask to Nginx -->
+          <path d="M 600 310 L 540 310" marker-end="url(#arrow)" />
+          <text x="570" y="313" text-anchor="middle">JSON</text>
+
+          <!-- Flask to Model -->
+          <path d="M 740 290 L 780 290" marker-end="url(#arrow)" />
+
+          <!-- Model to Flask -->
+          <path d="M 780 310 L 740 310" marker-end="url(#arrow)" />
+        </g>
+      </svg>
+    </div>
+  </body>
 </html>
