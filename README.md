@@ -207,17 +207,4 @@ Calculates the estimated price in Lakh Rupees.
 
 ---
 
-## Deep Codebase Analysis
 
-| File                            | Purpose / Details                                |
-| ------------------------------- | ------------------------------------------------ |
-| `client\app.js`                 | Core component logic and implementation details. |
-| `docker-compose.yml`            | Core component logic and implementation details. |
-| `model\columns.json`            | Core component logic and implementation details. |
-| `model\home_prices_final.ipynb` | Core component logic and implementation details. |
-| `model\home_prices_final.py`    | Core component logic and implementation details. |
-| `requirements.txt`              | Core component logic and implementation details. |
-| `server\artifacts\columns.json` | Core component logic and implementation details. |
-| `server\requirements.txt`       | Core component logic and implementation details. |
-| `server\server.py`              | Core component logic and implementation details. |
-| `server\util.py`                | Core component logic and implementation details. |
