@@ -18,8 +18,8 @@ jobs:
     - name: Install dependencies
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install pytest
+        pip install pytest pandas
     - name: Run tests
       run: |
-        if [ -d tests ] || ls test_*.py 1> /dev/null 2>&1; then pytest || true; else echo 'No tests found, skipping'; fi
+        if [ -d tests ] || ls test_*.py 1> /dev/null 2>&1; then pytest; else echo 'No tests found, skipping'; fi
 
