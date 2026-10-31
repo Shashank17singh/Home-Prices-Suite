@@ -15,7 +15,7 @@
 
 ## Overview
 
-A production-grade web application that predicts home prices using a Scikit-learn Linear Regression model. It features a Flask REST API, an Nginx reverse proxy, and a responsive frontend for users to query property values.
+A web application that predicts home prices using a Scikit-learn Linear Regression model, with a Flask REST API, an Nginx reverse proxy and a responsive frontend for querying property values.
 
 ---
 
@@ -75,7 +75,7 @@ graph TD
 Home-Prices-Suite/
 │
 ├── client/               # HTML/CSS/JS frontend UI
-├── model/                # Jupyter notebooks & ML artifacts (.pickle, columns.json)
+├── model/                # Dataset, training notebook and script
 ├── nginx_files/          # Nginx reverse proxy configurations
 ├── server/               # Flask REST API (server.py, util.py)
 └── README.md             # You are here
@@ -158,7 +158,7 @@ Whenever changes are pushed to the `main` branch, the `.github/workflows/deploy.
 
 1. Connects to the AWS EC2 instance via SSH.
 2. Pulls the latest code.
-3. Builds and restarts the Docker containers for zero-downtime deployment.
+3. Builds and restarts the Docker containers.
 
 ---
 
