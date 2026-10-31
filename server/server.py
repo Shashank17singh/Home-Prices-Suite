@@ -36,8 +36,8 @@ def predict_home_price() -> Any:
         )
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
+    except (KeyError, TypeError, ValueError):
+        return jsonify({"error": "total_sqft, location, bhk and bath are required."}), 400
 
 
 if __name__ == "__main__":
