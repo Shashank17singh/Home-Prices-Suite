@@ -1,6 +1,7 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <meta name="darkreader-lock" />
 
@@ -13,7 +14,7 @@
     <div class="img"></div>
     <form class="form">
       <h2>Area (Square Feet)</h2>
-      <input
+      <input aria-label="uiSqft"
         class="area"
         type="text"
         id="uiSqft"
@@ -57,7 +58,7 @@
 
       <h2>Location</h2>
       <div>
-        <select class="location" name="" id="uiLocations">
+        <select aria-label="uiLocations" class="location" name="" id="uiLocations">
           <option value="" disabled="disabled" selected="selected">
             Choose a Location
           </option>
