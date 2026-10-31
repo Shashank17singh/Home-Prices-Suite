@@ -1,11 +1,13 @@
 """
 Utility module for loading the trained model and artifact data.
-Provides prediction functions for property prices using a robust OOP approach.
+Provides prediction functions for property prices.
 """
 import json
 import os
 import pickle
+
 import numpy as np
+
 
 class HomePricePredictor:
     """Handles model loading and price estimation to avoid global state issues."""

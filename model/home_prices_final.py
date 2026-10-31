@@ -3,10 +3,11 @@ Data cleaning, feature engineering, and model training script for Bengaluru hous
 """
 import json
 import pickle
+
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import ShuffleSplit, cross_val_score, train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -17,13 +18,13 @@ def convert_sqft_to_num(x):
         if len(tokens) == 2:
             return (float(tokens[0]) + float(tokens[1])) / 2
         return float(x)
-    except:
+    except (TypeError, ValueError):
         return None
 
 
 def remove_pps_outliers(df):
     df_out = pd.DataFrame()
-    for key, subdf in df.groupby('location'):
+    for _key, subdf in df.groupby('location'):
         m = np.mean(subdf.price_per_sqft)
         st = np.std(subdf.price_per_sqft)
         reduced_df = subdf[(subdf.price_per_sqft > (m - st)) & (subdf.price_per_sqft <= (m + st))]
@@ -33,7 +34,7 @@ def remove_pps_outliers(df):
 
 def remove_bhk_outliers(df):
     exclude_indices = np.array([])
-    for location, location_df in df.groupby('location'):
+    for _location, location_df in df.groupby('location'):
         bhk_stats = {}
         for bhk, bhk_df in location_df.groupby('bhk'):
             bhk_stats[bhk] = {
