@@ -1,20 +1,20 @@
-/* Hallmark · redesign: 2026-11-08 · genre: modern-minimal · system: warm paper (ui-ux-pro-max Swiss minimal), one teal for actions
+/* Hallmark · redesign: 2026-11-08 · genre: modern-minimal · system: blue-grey dark (ui-ux-pro-max Swiss minimal), one teal for actions
  * critique: an intro beside one form with labelled fields; the estimate is the largest number on the page.
  * built: the project · v2.0.0 */
 :root {
-  color-scheme: light;
-  --bg: #fbfaf7;
-  --surface: #ffffff;
-  --surface-2: #f2efe8;
-  --line: #e2ddd2;
-  --line-strong: #c9c2b4;
-  --ink: #1c1a17;
-  --ink-2: #45403a;
-  --muted: #6b645a;
+  color-scheme: dark;
+  --bg: #12181a;
+  --surface: #182124;
+  --surface-2: #1f2a2e;
+  --line: #2c3a3f;
+  --line-strong: #46585e;
+  --ink: #e6eeef;
+  --ink-2: #c0cdd0;
+  --muted: #92a3a7;
   --action: #0f766e;
-  --action-hover: #115e59;
+  --action-hover: #138a80;
   --on-action: #ffffff;
-  --focus: #1c1a17;
+  --focus: #e6f4f2;
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
   --radius: 12px;
