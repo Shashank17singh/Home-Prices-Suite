@@ -1,76 +1,80 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light" />
     <meta name="darkreader-lock" />
-
-    <title>Home Price Prediction</title>
+    <title>Bangalore Home Price Estimator</title>
+    <meta name="description" content="Estimate a Bangalore home's price from its area, bedrooms, bathrooms and location, using a regression model served over a Flask API." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
-    <div class="img"></div>
-    <form class="form">
-      <h2>Area (Square Feet)</h2>
-      <input aria-label="uiSqft"
-        class="area"
-        type="text"
-        id="uiSqft"
-        name="Squareft"
-        value="1000"
-      />
+    <main class="shell">
+      <header class="intro">
+        <h1>Bangalore home price estimator</h1>
+        <p>Enter a home's size, rooms and location. A regression model trained on Bangalore listings returns an estimated price.</p>
+      </header>
 
-      <h2>BHK</h2>
-      <div class="switch-field">
-        <input type="radio" id="radio-bhk-1" name="uiBHK" value="1" />
-        <label for="radio-bhk-1">1</label>
-        <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked />
-        <label for="radio-bhk-2">2</label>
-        <input type="radio" id="radio-bhk-3" name="uiBHK" value="3" />
-        <label for="radio-bhk-3">3</label>
-        <input type="radio" id="radio-bhk-4" name="uiBHK" value="4" />
-        <label for="radio-bhk-4">4</label>
-        <input type="radio" id="radio-bhk-5" name="uiBHK" value="5" />
-        <label for="radio-bhk-5">5</label>
-      </div>
+      <form class="form" onsubmit="return false">
+        <div class="field">
+          <label for="uiSqft">Area (sq ft)</label>
+          <input class="area" type="number" id="uiSqft" name="Squareft" value="1000" min="300" inputmode="numeric" />
+        </div>
 
-      <h2>Bath</h2>
-      <div class="switch-field">
-        <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1" />
-        <label for="radio-bath-1">1</label>
-        <input
-          type="radio"
-          id="radio-bath-2"
-          name="uiBathrooms"
-          value="2"
-          checked
-        />
-        <label for="radio-bath-2">2</label>
-        <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3" />
-        <label for="radio-bath-3">3</label>
-        <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4" />
-        <label for="radio-bath-4">4</label>
-        <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5" />
-        <label for="radio-bath-5">5</label>
-      </div>
+        <fieldset class="field">
+          <legend>Bedrooms (BHK)</legend>
+          <div class="switch-field">
+            <input type="radio" id="radio-bhk-1" name="uiBHK" value="1" />
+            <label for="radio-bhk-1">1</label>
+            <input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked />
+            <label for="radio-bhk-2">2</label>
+            <input type="radio" id="radio-bhk-3" name="uiBHK" value="3" />
+            <label for="radio-bhk-3">3</label>
+            <input type="radio" id="radio-bhk-4" name="uiBHK" value="4" />
+            <label for="radio-bhk-4">4</label>
+            <input type="radio" id="radio-bhk-5" name="uiBHK" value="5" />
+            <label for="radio-bhk-5">5</label>
+          </div>
+        </fieldset>
 
-      <h2>Location</h2>
-      <div>
-        <select aria-label="uiLocations" class="location" name="" id="uiLocations">
-          <option value="" disabled="disabled" selected="selected">
-            Choose a Location
-          </option>
-          <option>Electronic City</option>
-          <option>Rajaji Nagar</option>
-        </select>
-      </div>
+        <fieldset class="field">
+          <legend>Bathrooms</legend>
+          <div class="switch-field">
+            <input type="radio" id="radio-bath-1" name="uiBathrooms" value="1" />
+            <label for="radio-bath-1">1</label>
+            <input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked />
+            <label for="radio-bath-2">2</label>
+            <input type="radio" id="radio-bath-3" name="uiBathrooms" value="3" />
+            <label for="radio-bath-3">3</label>
+            <input type="radio" id="radio-bath-4" name="uiBathrooms" value="4" />
+            <label for="radio-bath-4">4</label>
+            <input type="radio" id="radio-bath-5" name="uiBathrooms" value="5" />
+            <label for="radio-bath-5">5</label>
+          </div>
+        </fieldset>
 
-      <button class="submit" onclick="onClickedEstimatePrice()" type="button">
-        Estimate Price
-      </button>
-      <div id="uiEstimatedPrice" class="result"><h2></h2></div>
-    </form>
+        <div class="field">
+          <label for="uiLocations">Location</label>
+          <select class="location" name="" id="uiLocations">
+            <option value="" disabled="disabled" selected="selected">Choose a location</option>
+            <option>Electronic City</option>
+            <option>Rajaji Nagar</option>
+          </select>
+        </div>
+
+        <button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate price</button>
+
+        <div class="result-wrap">
+          <span class="result-label">Estimated price</span>
+          <div id="uiEstimatedPrice" class="result" aria-live="polite"><h2></h2></div>
+        </div>
+      </form>
+    </main>
   </body>
 </html>

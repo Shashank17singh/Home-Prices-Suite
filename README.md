@@ -1,17 +1,6 @@
-<div align="center">
+# Home Price Suite
 
-# Home Price Suite - Web & API
-
-**A full-stack machine learning application that predicts real estate prices across Bangalore, India**
-
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-REST%20API-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Linear%20Regression-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
-[![Nginx](https://img.shields.io/badge/Nginx-Reverse%20Proxy-009639?style=for-the-badge&logo=nginx&logoColor=white)](https://nginx.org/)
-
-</div>
-
----
+A full-stack machine learning application that predicts real estate prices across Bangalore, India.
 
 ## Overview
 
